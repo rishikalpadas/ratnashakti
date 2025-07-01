@@ -57,7 +57,8 @@ import p_img52 from './p_img52.png'
 
 import logo from './logo.png'
 import puja_parban_logo  from './puja_parban_logo.jpeg'
-import hero_img from './hero_img.png'
+import sanatani_sanskriti_logo from './sanatani_sanskriti_logo.jpg'
+import hero_img from './ss_hero.png'
 import cart_icon from './cart_icon.png'
 import bin_icon from './bin_icon.png'
 import dropdown_icon from './dropdown_icon.png'
@@ -78,6 +79,7 @@ import cross_icon from './cross_icon.png'
 export const assets = {
     logo,
     puja_parban_logo,
+    sanatani_sanskriti_logo,
     hero_img,
     cart_icon,
     dropdown_icon,

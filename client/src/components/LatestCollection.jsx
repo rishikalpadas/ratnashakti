@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import Title from './Title';
 import ProductItem from './ProductItem';
+import '../index.css'; // Assuming you have a CSS file for styles
 const LatestCollection = () => {
 
     const {products} = useContext(ShopContext);
