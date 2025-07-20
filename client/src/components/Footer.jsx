@@ -7,7 +7,7 @@ const Footer = () => {
     <div>
       <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm'>
             <div>
-                <img src={assets.puja_parban_logo} className='w-32 mb-5' alt="" />
+                <img src={assets.sanatani_sanskriti_logo} className='w-32 mb-5' alt="" />
                 <p className='w-fullmd:w-2/3 text-gray-600'>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, vitae?Lorem ipsum dolor sit amet.
                 </p>
