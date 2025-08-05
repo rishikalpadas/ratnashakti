@@ -1,25 +1,29 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, use, useEffect, useState } from 'react';
 // This file creates a context for the shop, providing products, currency, and delivery fee.
-import {products} from '../assets/assets'
+// import {products} from '../assets/assets'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) =>{
     const [currency, setCurrency] = useState('$');
     const [deliveryFee, setDeliveryFee] = useState(10);
+    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
     const [search,setSearch] = useState('');
     const [showSearch, setShowSearch] = useState(false);
 
     const [cartItems, setCartItems] = useState({});
+    const [products, setProducts] = useState([]);
+    const [token,setToken] = useState('');
     const navigate = useNavigate();
 
     const addToCart = async(itemId,size) => {
-        if(!size){
-            toast.error('Please select a size before adding to cart');
-            return;
-        }
+        // if(!size){
+        //     toast.error('Please select a size before adding to cart');
+        //     return;
+        // }
         let cartData = structuredClone(cartItems);
         if(cartData[itemId]){
             if(cartData[itemId][size]){
@@ -80,8 +84,36 @@ const ShopContextProvider = (props) =>{
     //     console.log('Cart Items Updated:', cartItems);
     // }, [cartItems]);
 
+    const getProductsData = async () => {
+        try{
+            const response = await axios.get(backendUrl + '/api/product/list')
+            // console.log('Products fetched successfully:', response.data);
+            if(response.data.success){
+                setProducts(response.data.products);
+            }
+            else{
+                toast.error(response.data.message)
+            }
+        }
+        catch(error){
+            console.log(error);
+            toast.error(error.message);
+        }
+    }
+
+    useEffect(() => {
+        getProductsData();
+    }, []);
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem('token');
+        if (storedToken) {
+            setToken(storedToken);
+        }
+    }, []);
+
     const value = {
-        products, currency, deliveryFee, setCurrency, setDeliveryFee, search, setSearch, showSearch, setShowSearch, cartItems,  addToCart, getCartCount, updateQuantity,getCartAmount,navigate
+        products, currency, deliveryFee, setCurrency, setDeliveryFee, search, setSearch, showSearch, setShowSearch, cartItems,  addToCart, getCartCount, updateQuantity,getCartAmount,navigate,backendUrl,token,setToken,setCartItems
        }
     return (
         <ShopContext.Provider value={value}>

@@ -74,7 +74,7 @@ const Collection = () => {
   }
   useEffect(() => {
     applyFilter();
-  }, [category,subcategory,search,showSearch]);
+  }, [category,subcategory,search,showSearch,products]);
 
   useEffect(() => {
     sortProduct();
@@ -97,7 +97,7 @@ const Collection = () => {
               <input type="checkbox"className='w-3' value={'Daily Puja Essentials'} onChange={toggleCategory}/> Daily Puja Essentials
             </p>
             <p className='flex gap-2'>
-              <input type="checkbox"className='w-3' value={'Frstival Puja Kits'} onChange={toggleCategory}/> Festival Puja Kits
+              <input type="checkbox"className='w-3' value={'Festival Puja Kits'} onChange={toggleCategory}/> Festival Puja Kits
             </p>
             <p className='flex gap-2'>
               <input type="checkbox"className='w-3' value={'Spiritual Idols & Murti'} onChange={toggleCategory}/> Spiritual Idols & Murti
